@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Games</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id='user_header'>
+  <%=link_to 'Strona domowa', games_path, class:'btn btn-info btn-sm', type:"button"%>
+    <%if current_user%>
+      Zalogowany jako <%=current_user.name%>
+      <%= link_to "Wyloguj", logout_path%>
+    <%else%>
+      <%=link_to "Zarejestruj", signup_path, class: 'btn btn-primary btn-sm', type:"button" %>
+       <%= link_to "Zaloguj", login_path, class: 'btn btn-default btn-sm' %>
+     <%end%>
+    <%=link_to 'Użytkownicy', users_path, class: 'btn btn-default btn-sm'%>
+</div>
+
+
+<%= yield %>
+
+</body>
+</html>

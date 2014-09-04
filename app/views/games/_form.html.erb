@@ -1,0 +1,29 @@
+<%=form_for(@game) do |f|%>
+  <%if @game.errors.any?%>
+    <div id='error_information'>
+      <h2><%= pluralize(@game.errors.count, "error") %> Wystąpił błąd przy zapisywaniu gry!</h2>
+
+      <ul>
+        <% @game.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, :Tytuł %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description, :Opis %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :genre, :Gatunek %><br>
+    <%= f.text_field :genre %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

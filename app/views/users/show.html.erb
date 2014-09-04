@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nazwa użytkownika:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Ranga użytkownika:</strong>
+  <%= @user.rank%>
+</p>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= @guser.email %>
+</p>
+
+<p>
+  <strong>Rola</strong>
+  <%= @user.role %>
+</p>
+
+<%= link_to 'Edycja', edit_game_path(@game) %> |
+<%= link_to 'Powrót', games_path %>
