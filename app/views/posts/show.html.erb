@@ -1,0 +1,31 @@
+<div class='show'>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong><%= @post.title %></strong>
+    
+  </p>
+
+  <p>
+    <%= @post.body %>
+  </p>
+</div>
+
+<div class='show'>
+  <%=link_to 'Dodaj komentarz', new_game_post_comment_path(@game, @post), class: 'btn btn-success'%><br>
+  <strong>Komentarze:</strong>
+  <div>
+    <table class='table table-hover'>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td class='nowrap'><strong><%= comment.title %></strong></td>
+          <td><%= comment.body %></td>
+          <td>Autor: <%=link_to comment.author, user_path(comment.user_id), class:'btn btn-default btn-xs'%>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'Edycja', edit_game_post_path(@game, @post), class:'btn btn-default btn-sm' %> |
+<%= link_to 'Powrót', game_posts_path, class:'btn btn-default btn-sm' %>

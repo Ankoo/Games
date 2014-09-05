@@ -16,17 +16,59 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.nowrap
-  {
-    white-space:nowrap;
-  }
-  
-table
-  {
-    margin:25px;
-  }
+  .nowrap
+    {
+      white-space:nowrap;
+    }
+    
+  .title
+    {
+      font-size:150%;
+    }
 
-td
-  {
-    padding:10px;
-  }
+  .show, #games_table, #users_index, #posts_table, #game_latest_post
+    {
+      width:75%;
+      text-align:center;
+    }  
+       
+  .actions
+    {
+      margin:10px;
+    }
+  
+  table
+    {
+      margin:25px;
+      text-align:center;
+      vertical-align:center;
+      
+    }
+    
+  h1, h2, h3
+    {
+      margin:10px;
+    }
+    
+  td, th
+    {
+      padding:10px;
+      text-align:center;
+      vertical-align:middle !important;
+    }
+    
+  thead
+    {
+      background-color:#778899;
+      color:#F0F8FF;
+    }
+    
+  div
+    {
+      margin:10px;
+    }
+    
+  #user_header
+    {
+      margin:10px;
+    }

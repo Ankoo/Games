@@ -1,0 +1,25 @@
+<%=form_for([@game, @post, @comment]) do |f|%>
+  <%if @comment.errors.any?%>
+    <div id='error_information'>
+      <h2><%= pluralize(@comment.errors.count, "error") %> Wystąpił błąd przy zapisywaniu komentarza!</h2>
+
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+    </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, :Tytuł %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body, :Treść %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

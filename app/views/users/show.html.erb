@@ -7,18 +7,26 @@
 
 <p>
   <strong>Ranga użytkownika:</strong>
-  <%= @user.rank%>
+  <%= @user.rank_id %>
 </p>
 
 <p>
   <strong>E-mail:</strong>
-  <%= @guser.email %>
+  <%= @user.email %>
 </p>
 
-<p>
-  <strong>Rola</strong>
-  <%= @user.role %>
-</p>
+<div>
+  <strong>Recenzje użytkownika:</strong>
+  <table class='table-bordered'>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%=link_to post.title, game_post_path(post.game_id, post) %></td>
+        <td><%= post.body %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-<%= link_to 'Edycja', edit_game_path(@game) %> |
-<%= link_to 'Powrót', games_path %>
+
+<%= link_to 'Edycja', edit_user_path(@user), class: 'btn btn-default'%> |
+<%= link_to 'Powrót', games_path, class: 'btn btn-default' %>

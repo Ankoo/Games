@@ -1,29 +1,40 @@
 <%= form_for @user do |f| %>
-   <% if @user.errors.any? %>
-     <div class="error_messages">
-       <h2>Wystąpił błąd!</h2>
-       <ul>
-         <% @user.errors.full_messages.each do |message| %>
-           <li><%= message %></li>
-         <% end %>
-       </ul>
-     </div>
-    <% end %>
-    <div class="field">
-      <%=f.label :name, :nazwa_użytkownika%><br>
-      <%=f.text_field :name%>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h3>Wystąpił błąd!</h3>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="field">
-      <%=f.label :email%><br>
-      <%=f.text_field :email%>
-    </div>
-    <div class="field">
-      <%=f.label :password, :hasło%><br>
-      <%=f.password_field :password%>
-    </div>
-    <div class="field">
-      <%=f.label :password_confirmation, :potwierdź_hasło%><br>
-      <%=f.password_field :password_confirmation%>
-    </div>
-   <div class="actions"><%= f.submit "Zarejestruj", class:'btn btn-primary' %></div>
+  <% end %>
+  <div class="field">
+    <%=f.label :name, 'Nazwa użytkownika'%><br>
+    <%=f.text_field :name%>
+  </div>
+  <div class="field">
+    <%=f.label :email%><br>
+    <%=f.text_field :email%>
+  </div>
+  <div class="field">
+    <%=f.label :password, :Hasło%><br>
+    <%=f.password_field :password%>
+  </div>
+  <div class="field">
+    <%=f.label :password_confirmation, 'Potwierdź hasło'%><br>
+    <%=f.password_field :password_confirmation%>
+  </div>
+  <%if current_user%>
+  <%if current_user.admin? %>
+  <div>
+    <%= f.select(:role_id, options_for_select(Role.all.map { |role| [role.name, role.id] })) %>
+  </div>
+  <div>
+    <%= f.select(:rank_id, options_for_select(Rank.all.map { |rank| [rank.title, rank.id] })) %>
+  </div>
+  <%end%>
+  <%end%>
+  
+ <div class="actions"><%= f.submit "Akceptuj", class:'btn btn-primary' %></div>
 <% end %>

@@ -6,10 +6,16 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :ratings, only: :update
-  resources :games
-  resources :posts
+  
+  resources :games do
+    resources :posts do
+      resources :comments
+    end
+  end
+  
+  
   resources :users
-  resources :comments
+  #resources :comments
   resources :sessions
   
   root to: 'games#index'

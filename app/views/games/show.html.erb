@@ -1,19 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class='show'>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Tytuł:</strong>
-  <%= @game.title %>
-</p>
+  <p>
+    <strong><%= @game.title %></strong>
+    
+  </p>
 
-<p>
-  <strong>Opis:</strong>
-  <%= @game.description %>
-</p>
+  <p id='game_desc'>
+    <strong>Opis:</strong><br>
+    <%= @game.description %>
+  </p>
 
-<p>
-  <strong>Gatunek</strong>
-  <%= @game.genre %>
-</p>
+  <p>
+    <strong>Gatunek:</strong>
+    <%= @game.genre %>
+  </p>
+  <p>
+    <%=link_to 'Dodaj recenzję', new_game_post_path(@game), class: 'btn btn-success btn-sm'%>
+  </p>
+</div>
+<div id='game_latest_post'>
+  <strong>Najpopularniejsza recenzja:</strong>
+  <div>
+    <% if @post != nil%>
+        <p class='smaller'><strong><%=@post.title%></strong></p>
+        <p class='smaller'><%=@post.body%></p>
+        <p class='smaller'><%=link_to 'Wyświetl komentarze', game_post_path(@game, @post), class:'btn btn-default btn-sm'%></p>
+    <%else%>
+        <%=link_to 'Ta gra nie ma jeszcze żadnej recenzji - dodaj własną!', new_game_post_path(@game), class: 'btn btn-success btn-lg'%>
+    <%end%>
+  </div>
+</div>
 
-<%= link_to 'Edycja', edit_game_path(@game) %> |
-<%= link_to 'Powrót', games_path %>
+
+<%= link_to 'Edycja', edit_game_path(@game), class:'btn btn-default btn-sm' %> |
+<%= link_to 'Powrót', games_path, class:'btn btn-default btn-sm'%>

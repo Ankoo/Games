@@ -1,25 +1,38 @@
 <h1>Lista użytkowników</h1>
 <div id='users_index'>
-  <table>
+  <table class='table table-hover'>
     <thead>
       <tr>
         <th>Nazwa </th>
         <th>e-mail </th>
-        <th>Rola </th>
-        <th colspan='2'></th>
+        <th>Ranga </th>
+        <%if current_user%>
+          <%if current_user.admin?%>
+            <th>Rola</th>
+          <%end%>
+        <%end%>
+        <th colspan='3'>Opcje</th>
       </tr>
-    </thead>
-    
+    </thead
     <tbody>
       <%@users.each do |user|%>
       	<tr>
       		<th><%=user.name%></th>
           	<th><%=user.email%></th>
-            <th><%=user.role%></th>
-            <th><%=link_to 'Profil', show_user_path(user)%></th>
-            <th><%=link_to 'Edycja profilu', edit_user_path(user)%></th>
+            <th><%=user.rank_name%></th>
+            <%if current_user%>
+              <%if current_user.admin?%>
+                <th><%=user.role_name%></th>
+              <%end%>
+            <%end%>
+            <th><%=link_to 'Profil', user, class:'btn btn-default btn-sm'%></th>
+            <% if can? :update, user %>
+              <th><%=link_to 'Edycja profilu', edit_user_path(user), class:'btn btn-warning btn-sm'%></th>
+            <% end %>
+            <% if can? :destroy, user%>
+              <th><%=link_to 'Usuń użytkownika', user, method: :destroy, data: { confirm: 'Jesteś pewien?' }, class:'btn btn-danger btn-sm' %></th>
+              <%end%>
           </tr>
        <%end%>   
     </tbody>
   </table>
-</div>

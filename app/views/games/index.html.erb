@@ -1,12 +1,12 @@
-<h1>Lita gier</h1>
+<h1>Gry</h1>
 <div id='games_table'>
-  <table class='table-striped'>
+  <table class='table table-hover'>
     <thead>
       <tr>
-        <th>Tytuł </th>
-        <th>Opis </th>
-        <th>Gatunek </th>
-        <th colspan="3"></th>
+        <th class='title'>Tytuł</th>
+        <th>Opis</th>
+        <th>Gatunek</th>
+        <th colspan="3">Opcje</th>
       </tr>
     </thead>
 
@@ -16,15 +16,19 @@
           <td class='nowrap'><%= game.title %></td>
           <td><%= game.description %></td>
           <td><%= game.genre %></td>
-          <td><%= link_to 'Wyświetl ', game %></td>
-          <td><%= link_to 'Edytuj ', edit_game_path(game) %></td>
-          <td><%= link_to 'Usuń ', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Wyświetl ', game, class:'btn btn-default btn-sm' %></td>
+          <%if can? :update, game%>
+            <td><%= link_to 'Edytuj ', edit_game_path(game), class:'btn btn-warning btn-sm' %></td>
+            <%if can? :manage, game%>
+              <td><%= link_to 'Usuń', game, method: :delete, data: { confirm: 'Jesteś pewien?' }, class:'btn btn-danger btn-sm' %></td>
+            <%end%>
+          <%end%>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
 
 <br>
 
-<%= link_to 'New Game', new_game_path %>
+<%= link_to 'Dodaj grę', new_game_path, class: 'btn btn-success' %>
+</div>

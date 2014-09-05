@@ -1,12 +1,13 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   
   def index
    @games = Game.all 
   end
   
   def show
-    
+    @post = @game.posts.last 
   end
   
   def new
@@ -14,14 +15,15 @@ class GamesController < ApplicationController
   end
   
   def edit 
-    
+    authorize! :update, @game
   end
   
   def create
     @game = Game.new(game_params)
+    authorize! :create, @game
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to @game, notice: 'Gra została stworzona.' }
         format.json { render :show, status: :created, location: @game }
       else
         format.html { render :new }
@@ -33,7 +35,7 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to @game, notice: 'Gra została zaktualizowana.' }
         format.json { render :show, status: :ok, location: @game }
       else
         format.html { render :edit }
@@ -43,9 +45,10 @@ class GamesController < ApplicationController
   end
   
   def destroy
+    authorize! :destroy, @game
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
+      format.html { redirect_to games_url, notice: 'Gra została usunięta.' }
       format.json { head :no_content }
     end
   end
