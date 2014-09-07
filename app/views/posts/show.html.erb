@@ -1,14 +1,28 @@
 <div class='show'>
   <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong><%= @post.title %></strong>
-    
-  </p>
+  <p><strong><%= @post.title %></strong></p>
 
-  <p>
-    <%= @post.body %>
-  </p>
+  <p><%= @post.body %></p>
+  
+  <p>Autor: <%=link_to @author, user_path(@post.user_id)%></p>
+  
+  <div id='rating'>
+    <p>Średnia ocena</p>
+    <div id="star">
+      
+    </div>
+    <script>
+      $('#star').raty({
+        readOnly: true,
+        score: <%= @post.average_rating %>,
+        path: '/assets'
+      });
+    </script>
+        
+
+  </div>
+  
 </div>
 
 <div class='show'>
@@ -21,7 +35,22 @@
           <td class='nowrap'><strong><%= comment.title %></strong></td>
           <td><%= comment.body %></td>
           <td>Autor: <%=link_to comment.author, user_path(comment.user_id), class:'btn btn-default btn-xs'%>
+          <td id="c_<%= comment.id %>">
+           
+          </td>
+            <%if can? :manage, comment%>
+            <td>
+              <%= link_to 'Usuń', game_post_comment_path(@game, @post, comment), method: :delete, data: { confirm: 'Jesteś pewien?' }, class:'btn btn-danger btn-xs' %>
+            </td>
+          <%end%>
         </tr>
+        <script>
+          $('#c_<%= comment.id %>').raty({
+            readOnly: true,
+            score: <%= comment.rating.try(:score) %>,
+            path: '/assets'
+          });
+        </script>
       <% end %>
     </table>
   </div>

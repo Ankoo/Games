@@ -6,6 +6,13 @@ class Post < ActiveRecord::Base
   belongs_to :game
   
   has_many :comments, dependent: :destroy
-  has_many :ratings, dependent: :destroy
+  has_many :ratings
+  
+  
+  def average_rating
+    return 0 if ratings.size == 0
+    ratings.sum(:score) / ratings.size
+  end
+  
   
 end

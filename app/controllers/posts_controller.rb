@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
     @comments = @post.comments.all
+    @rating = Rating.where(post_id: @post.id, user_id: current_user.id).first 
   end
   
   def create
@@ -61,10 +62,11 @@ class PostsController < ApplicationController
   
   
   private
-  
+
   def set_author
-    @author = User.find(params[:user_id])
+    @author = User.find(@post.user_id).name
   end
+
   
   def set_game
     @game = Game.find(params[:game_id])

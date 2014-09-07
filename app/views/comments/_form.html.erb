@@ -19,7 +19,14 @@
     <%= f.label :body, :Treść %><br>
     <%= f.text_area :body %>
   </div>
+  
+  <div id='user_star'>
+  </div>
+  <%#= f.text_field :score %>
+  <%= f.select(:score, options_for_select([['Bardzo słaba', 1], ['Słaba', 2], ['Średnia', 3], ['Dobra', 4], ['Bardzo dobra', 5]])) %>
+
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit value='Dodaj komentarz'%>
   </div>
 <% end %>

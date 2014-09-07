@@ -26,14 +26,14 @@
     <%=f.password_field :password_confirmation%>
   </div>
   <%if current_user%>
-  <%if current_user.admin? %>
-  <div>
-    <%= f.select(:role_id, options_for_select(Role.all.map { |role| [role.name, role.id] })) %>
-  </div>
-  <div>
-    <%= f.select(:rank_id, options_for_select(Rank.all.map { |rank| [rank.title, rank.id] })) %>
-  </div>
-  <%end%>
+    <%if current_user.admin? %>
+    <div>
+      <%= f.select(:role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }, @user.role_id)) %>
+    </div>
+    <div>
+      <%= f.select(:rank_id, options_for_select(Rank.all.map { |rank| [rank.title, rank.id] }, @user.rank_id)) %>
+    </div>
+    <%end%>
   <%end%>
   
  <div class="actions"><%= f.submit "Akceptuj", class:'btn btn-primary' %></div>

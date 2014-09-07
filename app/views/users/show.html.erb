@@ -1,32 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class='show'>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nazwa użytkownika:</strong>
-  <%= @user.name %>
-</p>
+  <p>
+    <strong>Nazwa użytkownika:</strong>
+    <%= @user.name %>
+  </p>
 
-<p>
-  <strong>Ranga użytkownika:</strong>
-  <%= @user.rank_id %>
-</p>
+  <p>
+    <strong>Ranga użytkownika:</strong>
+    <%= @user.rank_id %>
+  </p>
 
-<p>
-  <strong>E-mail:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>E-mail:</strong>
+    <%= @user.email %>
+  </p>
 
-<div>
-  <strong>Recenzje użytkownika:</strong>
-  <table class='table-bordered'>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%=link_to post.title, game_post_path(post.game_id, post) %></td>
-        <td><%= post.body %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div>
+    <strong>Recenzje użytkownika:</strong>
+    <table class='table-bordered'>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%=link_to post.title, game_post_path(post.game_id, post) %></td>
+          <td><%= post.body %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 
 
-<%= link_to 'Edycja', edit_user_path(@user), class: 'btn btn-default'%> |
-<%= link_to 'Powrót', games_path, class: 'btn btn-default' %>
+<%= link_to 'Edycja', edit_user_path(@user), class:'btn btn-default btn-sm'%> |
+<%= link_to 'Powrót', games_path, class:'btn btn-default btn-sm' %>

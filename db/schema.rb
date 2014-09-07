@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904110615) do
+ActiveRecord::Schema.define(version: 20140905135610) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140904110615) do
     t.integer  "score",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comment_id"
   end
 
   add_index "ratings", ["post_id"], name: "index_ratings_on_post_id"

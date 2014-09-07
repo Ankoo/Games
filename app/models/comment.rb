@@ -5,11 +5,13 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :post
   
-  has_many :ratings
+  has_one :rating, dependent: :destroy
   
+  attr_accessor :score
   
   def author
     self.user.try(:name) || 'nieznany'
   end
+
   
 end

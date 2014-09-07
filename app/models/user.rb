@@ -24,8 +24,16 @@ class User < ActiveRecord::Base
     self.rank.try(:title) || ""
   end
   
+  def rank_id
+    self.rank.try(:id) || ""
+  end
+  
   def role_name
     self.role.try(:name) || "" 
+  end
+  
+  def role_id
+    self.role.try(:id) || ""
   end
   
   def admin?
