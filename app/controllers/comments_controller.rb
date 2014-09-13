@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
   end
   
   def create
+    authorize! :create, @comment
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     @rating = Rating.new

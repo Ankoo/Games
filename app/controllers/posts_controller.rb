@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def show
     authorize! :read, @post
     @comments = @post.comments.all
-    @rating = Rating.where(post_id: @post.id, user_id: current_user.id).first 
+    @rating = Rating.where(post_id: @post.id).first 
   end
   
   def create
